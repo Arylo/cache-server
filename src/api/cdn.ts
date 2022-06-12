@@ -132,6 +132,7 @@ const fn = (): M => async (ctx, next) => {
     ctx.status = status;
     ctx.body = text;
   }
+  await next();
 }
 
 router

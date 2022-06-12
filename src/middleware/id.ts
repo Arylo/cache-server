@@ -9,11 +9,11 @@ export interface IIdMiddleContext {
     log: (...args: any[]) => void;
 }
 
-export const ID = (): Middleware => (ctx, next) => {
+export const ID = (): Middleware => async (ctx, next) => {
     const id = nanoid()
     ctx.log = (...args: any[]) => console.log(`[${id}]`, ...args)
+    await next()
     ctx.headers['x-cdn-id'] = id
-    next()
 }
 
 export default ID;
