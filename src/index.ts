@@ -1,7 +1,7 @@
 import fs from 'fs';
 import Koa from 'koa';
 import mkdir from 'make-dir';
-import { TEMP_PATH } from './constant';
+import { PORT, TEMP_PATH } from './constant';
 import ID from './middleware/id';
 import API from './api';
 import Time from './middleware/time';
@@ -16,8 +16,8 @@ app
     .use(API.routes())
     .use(API.allowedMethods());
 
-app.listen(18080, () => {
-    console.log('listening to port 18080...')
+app.listen(PORT, () => {
+    console.log(`listening to port ${PORT}...`)
     if (!fs.existsSync(TEMP_PATH)) {
         mkdir.sync(TEMP_PATH)
     }
